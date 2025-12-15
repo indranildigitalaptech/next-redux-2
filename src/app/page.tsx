@@ -5,7 +5,7 @@ export default function Home() {
     {
       title: 'Counter',
       description: 'Basic Redux state management with actions and reducers',
-      href: '/demo/counter',
+      href: '/counter',
       gradient: 'from-purple-500 to-pink-500',
       icon: '🔢',
     },
