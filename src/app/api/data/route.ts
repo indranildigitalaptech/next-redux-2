@@ -1,21 +1,29 @@
 import { NextRequest, NextResponse } from "next/server";
 
-let count = 0;
-const heading = "Hello world!";
-const paragraph = "This is a simple API route in Next.js.";
+let count = 10;
+const heading = "Redux Counter";
+const paragraph = "An example of a simple counter application using Redux Toolkit.";
+let modifiedAt = "";
+
 
 export async function GET() {
     return NextResponse.json({
         heading,
         paragraph,
-        count
+        count,
+        modifiedAt
     });
 }
 
 export async function POST(request: NextRequest) {
-    const { newCount } = await request.json();
-    count = newCount;
-    return NextResponse.json({ heading, paragraph, count });
+    const body = await request.json();
+
+    if (body.newCount !== undefined) {
+        count = body.newCount;
+        modifiedAt = new Date().toISOString();
+    }
+
+    return NextResponse.json({ heading, paragraph, count, modifiedAt });
 }
 
 export async function PUT(request: NextRequest) {
